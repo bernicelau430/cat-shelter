@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adoption</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Cat Shelter Admin Portal</h1>
+        <img src="{{ url_for('static', filename='cat_logo.png') }}" alt="Cat Logo">
+    </header>
+    <div class="form-container">
+        <form method="POST">
+            <label>ID: {{ adopter_id }}</label><br>
+            <label>Name:</label><input type="text" name="name"><br>
+            <label>Email:</label><input type="email" name="email"><br>
+            <label>Cat ID:</label><input type="text" name="cat_id"><br>
+            <button type="button" class="cancel" onclick="window.location.href='/'">Cancel</button>
+            <button type="submit">Confirm Adoption</button>
+        </form>
+    </div>
+</body>
+</html>

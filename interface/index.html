@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Shelter Admin Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <a href="/" style="text-decoration: none; color: inherit;">
+            <h1>Cat Shelter Admin Portal</h1>
+        </a>
+        <img src="{{ url_for('static', filename='cat_logo.png') }}" alt="Cat Logo">
+    </header>
+    <div class="controls">
+        <div class="buttons">
+            <button onclick="window.location.href='/new_cat'">New Cat</button>
+            <button onclick="window.location.href='/adoption'">Adoption</button>
+        </div>
+        <form method="get" action="/" class="search-form">
+            <div>
+                <input type="text" id="search-bar" name="query" placeholder="Query...">
+                <button type="submit">Search</button>
+            </div>
+            <div class="extended-view-container">
+                <label for="extended_view">Extended View</label>
+                <input type="checkbox" id="extended_view" name="extended_view" value="true">
+            </div>
+        </form>
+    </div>
+    <div class="table-container">
+        {% if cats %}
+        <div class="table-wrapper">
+            <table class="cat-table">
+                <thead>
+                    <tr>
+                        <th>Cat ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Age Range</th>
+                        <th>Adopted</th>
+                        {% if extended_view %}
+                            <th>Birthday</th>
+                            <th>Date Arrived</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cat, age, age_range in cats %}
+                    <tr>
+                        <td>{{ cat.ID }}</td>
+                        <td>{{ cat.Name }}</td>
+                        <td>{{ cat.Gender }}</td>
+                        <td>{{ age.Age }}</td>
+                        <td>{{ age_range.Age_Range }}</td>
+                        <td>{{ cat.Adopted }}</td>
+                        {% if extended_view %}
+                            <td>{{ cat.Birthday }}</td>
+                            <td>{{ cat.DateArrived }}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        
+        {% if adopters %}
+        <div class="table-wrapper">
+            <table class="adopter-table">
+                <thead>
+                    <tr>
+                        <th>Adopter ID</th>
+                        <th>Adopter Name</th>
+                        <th>Email</th>
+                        <th>Cat ID</th>
+                        <th>Cat Name</th>
+                        {% if extended_view %}
+                            <th>Cat Age Range</th>
+                            <th>Cat Gender</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for adopter, applicant, cat, age, age_range in adopters %}
+                    <tr>
+                        <td>{{ adopter.ID }}</td>
+                        <td>{{ applicant.Name }}</td>
+                        <td>{{ applicant.Email }}</td>
+                        <td>{{ cat.ID }}</td>
+                        <td>{{ cat.Name }}</td>
+                        {% if extended_view %}
+                            <td>{{ age_range.Age_Range }}</td>
+                            <td>{{ cat.Gender }}</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

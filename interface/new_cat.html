@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Cat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Cat Shelter Admin Portal</h1>
+        <img src="{{ url_for('static', filename='cat_logo.png') }}" alt="Cat Logo">
+    </header>
+    <div class="form-container">
+        <form method="POST">
+            <label>ID: {{ cat_id }}</label><br>
+            <label>Name:</label><input type="text" name="name"><br>
+            <label>Birthday:</label><input type="date" name="birthday"><br>
+            <label>Gender:</label><input type="text" name="gender"><br>
+            <label>Date Arrived:</label><input type="date" name="date_arrived"><br>
+            <button type="button" class="cancel" onclick="window.location.href='/'">Cancel</button>
+            <button type="submit">Add Cat</button>
+        </form>
+    </div>
+</body>
+</html>
