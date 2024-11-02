@@ -11,10 +11,10 @@ INSERT INTO Age (Birthday, Age, CatID) VALUES
 ('2019-11-20', 4, 'C9384');
 
 -- Insert sample data into Age_Range table
-INSERT INTO Age_Range (Age, Age_Range, Birthday) VALUES
-(2, 'Young', '2021-05-01'),
-(3, 'Adult', '2020-08-15'),
-(4, 'Adult', '2019-11-20');
+INSERT INTO Age_Range (Age, Age_Range, AgeID) VALUES
+(2, 'Young', 1),
+(3, 'Adult', 2),
+(4, 'Adult', 3);
 
 -- Insert sample data into Applicant table
 INSERT INTO Applicant (ID, Name, Email) VALUES
