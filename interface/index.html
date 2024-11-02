@@ -77,8 +77,8 @@
                         <th>Cat ID</th>
                         <th>Cat Name</th>
                         {% if extended_view %}
-                            <th>Cat Age Range</th>
                             <th>Cat Gender</th>
+                            <th>Cat Age Range</th>
                         {% endif %}
                     </tr>
                 </thead>
@@ -91,8 +91,8 @@
                         <td>{{ cat.ID }}</td>
                         <td>{{ cat.Name }}</td>
                         {% if extended_view %}
-                            <td>{{ age_range.Age_Range }}</td>
                             <td>{{ cat.Gender }}</td>
+                            <td>{{ age_range.Age_Range }}</td>
                         {% endif %}
                     </tr>
                     {% endfor %}
