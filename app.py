@@ -130,9 +130,10 @@ def new_cat():
 @app.route('/adoption', methods=['GET', 'POST'])
 def adoption():
     # Route for processing an adoption
+    adopter_id = generate_id()  # Generate adopter_id here to use it in both form and database insertion
+    applicant_id = generate_id()  # Generate applicant_id here to use it in both form and database insertion
+    
     if request.method == 'POST':
-        adopter_id = generate_id()
-        applicant_id = generate_id()
         name = request.form['name']
         email = request.form['email']
         cat_id = request.form['cat_id']
@@ -155,7 +156,7 @@ def adoption():
         db.session.commit()
         
         return redirect(url_for('index'))
-    return render_template('adoption.html', adopter_id=generate_id(), applicant_id=generate_id())
+    return render_template('adoption.html', adopter_id=adopter_id, applicant_id=applicant_id)
 
 if __name__ == '__main__':
     # Create all tables and run the app

@@ -88,6 +88,7 @@
                 <thead>
                     <tr>
                         <th>Adoption ID</th>
+                        <th>Applicant ID</th>
                         <th>Adopter Name</th>
                         <th>Email</th>
                         <th>Cat ID</th>
@@ -104,6 +105,7 @@
                     {% for adopter, applicant, cat, age, age_range in adopters %}
                     <tr>
                         <td>{{ adopter.ID }}</td>
+                        <td>{{ applicant.ID }}</td>
                         <td>{{ applicant.Name }}</td>
                         <td>{{ applicant.Email }}</td>
                         <td>{{ cat.ID }}</td>
