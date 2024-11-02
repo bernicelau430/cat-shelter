@@ -12,16 +12,15 @@ CREATE TABLE Age (
     Age INT,
     CatID VARCHAR(5),
     FOREIGN KEY (Birthday) REFERENCES Cat(Birthday),
-    FOREIGN KEY (CatID) REFERENCES Cat(ID),
-    UNIQUE (Age)
+    FOREIGN KEY (CatID) REFERENCES Cat(ID)
 );
 
 CREATE TABLE Age_Range (
-    Age INT PRIMARY KEY,
+    Age INT,
     Age_Range VARCHAR(10),
-    AgeID INT UNIQUE,
-    FOREIGN KEY (Age) REFERENCES Age(Age),
-    FOREIGN KEY (AgeID) REFERENCES Age(Age)
+    Birthday DATE,
+    PRIMARY KEY (Age, Birthday),
+    FOREIGN KEY (Birthday) REFERENCES Age(Birthday)
 );
 
 CREATE TABLE Applicant (
