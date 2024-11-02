@@ -4,11 +4,11 @@ INSERT INTO Cat (ID, Name, Birthday, Gender, DateArrived, Adopted) VALUES
 ('B2341', 'Mittens', '2020-08-15', 'Female', '2020-09-01', 'No'),
 ('C9384', 'Shadow', '2019-11-20', 'Male', '2019-12-01', 'Yes');
 
--- Insert sample data into Age table
+-- Insert sample data into Age table with calculated age
 INSERT INTO Age (Birthday, Age, CatID) VALUES
-('2021-05-01', 2, 'A9834'),
-('2020-08-15', 3, 'B2341'),
-('2019-11-20', 4, 'C9384');
+('2021-05-01', FLOOR(DATEDIFF(CURDATE(), '2021-05-01') / 365), 'A9834'),
+('2020-08-15', FLOOR(DATEDIFF(CURDATE(), '2020-08-15') / 365), 'B2341'),
+('2019-11-20', FLOOR(DATEDIFF(CURDATE(), '2019-11-20') / 365), 'C9384');
 
 -- Insert sample data into Age_Range table
 INSERT INTO Age_Range (Age, Age_Range, AgeID) VALUES
