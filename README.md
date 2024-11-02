@@ -6,9 +6,10 @@ It allows (admin) users to add new cats, manage adoptions, and search for cats a
 ## Search Functionalities
 Query by:
 - Cat ID
+- Cat Name
 - Adopter ID
 - Adopter Name
-- Birthday
+- Birthday (YYYY-MM-DD)
 - Age
 
 ## Requirements
