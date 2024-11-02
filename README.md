@@ -23,7 +23,7 @@ Query by:
 
 
 
-## Initial Setup Instructions
+# Initial Setup Instructions
 
 ### 1. Install the MySQL Database
 - On macOS, you can use Homebrew to install MySQL: `brew install mysql`
@@ -66,7 +66,7 @@ The application will be accessible at http://127.0.0.1:5000/
 
 
 
-## Running the app
+# Running the app
 
 ### 1. Log in to MySQL and Set Up the Database
 - Log in: `mysql -u root -p`
@@ -88,7 +88,7 @@ The application will be accessible at http://127.0.0.1:5000/
 
 
 
-## Tips for Running the App
+# Tips for Running the App
 - Ensure the MySQL server is running before starting the Flask application
 - Replace 'cat_user' and 'password' with your actual MySQL user and password in the Flask application configuration
 - The Flask development server will be accessible at http://127.0.0.1:5000/ by default
