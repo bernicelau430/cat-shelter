@@ -21,6 +21,8 @@ Query by:
 
 
 
+
+
 ## Initial Setup Instructions
 
 ### 1. Install the MySQL Database
@@ -62,6 +64,8 @@ The application will be accessible at http://127.0.0.1:5000/
 
 
 
+
+
 ## Running the app
 
 ### 1. Log in to MySQL and Set Up the Database
@@ -76,10 +80,12 @@ In the terminal, navigate to the directory containing the SQL files.
 
 
 
-### 2. Run the Flask application
+### 2. Run the Flask Application
 - In the project root directory, run: `python app.py`
 
 The application will be accessible at http://127.0.0.1:5000/
+
+
 
 
 ## Tips for Running the App
