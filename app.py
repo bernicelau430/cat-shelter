@@ -46,6 +46,9 @@ def index():
     query = request.args.get('query')
     extended_view = request.args.get('extended_view', 'false').lower() == 'true'
     
+    adopters = []
+    cats = []
+    
     if query:
         adopters = db.session.query(Adopter, Applicant, Cat, Age, AgeRange).join(Applicant, Adopter.ApplicantID == Applicant.ID).join(Cat, Adopter.CatID == Cat.ID).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.Age == AgeRange.Age).filter(
             (Adopter.ID.like(f'%{query}%')) |
@@ -55,9 +58,6 @@ def index():
             (AgeRange.Age_Range.like(f'%{query}%'))
         ).all()
         
-        if adopters:
-            return render_template('index.html', adopters=adopters, extended_view=extended_view, is_adopter_query=True)
-        
         cats = db.session.query(Cat, Age, AgeRange).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.Age == AgeRange.Age).filter(
             (Cat.ID.like(f'%{query}%')) |
             (Cat.Name.like(f'%{query}%')) |
@@ -65,10 +65,11 @@ def index():
             (Age.Age.like(f'%{query}%')) |
             (AgeRange.Age_Range.like(f'%{query}%'))
         ).all()
-        return render_template('index.html', cats=cats, extended_view=extended_view, is_adopter_query=False)
+        
+        return render_template('index.html', adopters=adopters, cats=cats, extended_view=extended_view, is_adopter_query=bool(adopters), is_cat_query=bool(cats))
     else:
         cats = db.session.query(Cat, Age, AgeRange).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.Age == AgeRange.Age).all()
-        return render_template('index.html', cats=cats, extended_view=extended_view, is_adopter_query=False)
+        return render_template('index.html', cats=cats, extended_view=extended_view, is_adopter_query=False, is_cat_query=bool(cats))
 
 @app.route('/new_cat', methods=['GET', 'POST'])
 def new_cat():
