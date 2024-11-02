@@ -1,0 +1,212 @@
+/* Default styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+    min-width: 50vw;
+}
+
+
+/* Header styles */
+
+header {
+    background-color: #c4ebc4;
+    color: #30312f;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header img {
+    height: 50px;
+    padding-right: 10px;
+}
+
+
+/* Button styles */
+
+button {
+    background-color: #b4e372;
+    color: #666965;
+    border: none;
+    padding: 15px 30px;
+    margin-right: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+button.cancel {
+    background-color: #96a297;
+}
+
+
+/* Controls for landing page */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.buttons button {
+    margin-right: 10px;
+    line-height: normal;
+}
+
+#search-bar {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+/* Search form styles */
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+#search-bar {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    flex: 1;
+    width: 300px;
+    height: 40px;
+}
+
+.search-form button {
+    padding: 10px;
+    margin-top: 5px;
+    margin-right: 0px;
+    height: 40px;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #ccc;
+    background-color: #b4e372;
+    color: #666965;
+    cursor: pointer;
+}
+
+.extended-view-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+    margin-right: 10px;
+}
+
+.extended-view-container label {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.extended-view-container input[type="checkbox"] {
+    margin-top: 10px;
+}
+
+
+/* Table Styles for Landing page */
+
+.table-container {
+    background-color: #dcf4e4;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 100%;
+    margin: 20px 20px;
+}
+
+.table-wrapper {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #b4e372;
+    color: #30312f;
+}
+
+table tr:nth-child(even) {
+    background-color: #f0f7ef;
+}
+
+table tr:nth-child(odd) {
+    background-color: #e8f3de;
+}
+
+
+/* Form styles for all forms */
+
+.form-container {
+    display: flex;
+    justify-content: flex;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+form {
+    background-color: #f0f7ef;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+form label {
+    color: #30312f;
+    display: block;
+    margin-top: 10px;
+}
+
+form input {
+    color: #666965;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    margin-top: 20px;
+    float: right;
+    border-radius: 10px;
+}
