@@ -1,26 +1,26 @@
 CREATE TABLE Cat (
     ID VARCHAR(5) PRIMARY KEY,
     Name VARCHAR(255),
-    Birthday DATE UNIQUE,
+    Birthday DATE,
     Gender VARCHAR(10),
     DateArrived DATE,
     Adopted VARCHAR(3) DEFAULT 'No'
 );
 
 CREATE TABLE Age (
-    Birthday DATE PRIMARY KEY,
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Birthday DATE,
     Age INT,
     CatID VARCHAR(5),
-    FOREIGN KEY (Birthday) REFERENCES Cat(Birthday),
     FOREIGN KEY (CatID) REFERENCES Cat(ID)
 );
 
 CREATE TABLE Age_Range (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     Age INT,
     Age_Range VARCHAR(10),
-    Birthday DATE,
-    PRIMARY KEY (Age, Birthday),
-    FOREIGN KEY (Birthday) REFERENCES Age(Birthday)
+    AgeID INT,
+    FOREIGN KEY (AgeID) REFERENCES Age(ID)
 );
 
 CREATE TABLE Applicant (
