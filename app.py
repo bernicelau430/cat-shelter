@@ -13,20 +13,22 @@ db = SQLAlchemy(app)
 class Cat(db.Model):
     ID = db.Column(db.String(5), primary_key=True, unique=True)
     Name = db.Column(db.String(255))
-    Birthday = db.Column(db.Date, unique=True)
+    Birthday = db.Column(db.Date)
     Gender = db.Column(db.String(10))
     DateArrived = db.Column(db.Date)
     Adopted = db.Column(db.String(3), default='No')
 
 class Age(db.Model):
-    Birthday = db.Column(db.Date, db.ForeignKey('cat.Birthday'), primary_key=True)
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Birthday = db.Column(db.Date)
     Age = db.Column(db.Integer)
     CatID = db.Column(db.String(5), db.ForeignKey('cat.ID'))
 
 class AgeRange(db.Model):
-    Age = db.Column(db.Integer, primary_key=True)
+    ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    Age = db.Column(db.Integer)
     Age_Range = db.Column(db.String(10))
-    Birthday = db.Column(db.Date, db.ForeignKey('age.Birthday'), primary_key=True)
+    AgeID = db.Column(db.Integer, db.ForeignKey('age.ID'))
 
 class Applicant(db.Model):
     ID = db.Column(db.String(5), primary_key=True, unique=True)
@@ -56,7 +58,7 @@ def index():
         except ValueError:
             query_date = None
         
-        adopters = db.session.query(Adopter, Applicant, Cat, Age, AgeRange).join(Applicant, Adopter.ApplicantID == Applicant.ID).join(Cat, Adopter.CatID == Cat.ID).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.Birthday == AgeRange.Birthday).filter(
+        adopters = db.session.query(Adopter, Applicant, Cat, Age, AgeRange).join(Applicant, Adopter.ApplicantID == Applicant.ID).join(Cat, Adopter.CatID == Cat.ID).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.ID == AgeRange.AgeID).filter(
             (Adopter.ID.like(f'%{query}%')) |
             (Applicant.ID.like(f'%{query}%')) |
             (Applicant.Name.like(f'%{query}%')) |
@@ -64,7 +66,7 @@ def index():
             (AgeRange.Age_Range.like(f'%{query}%'))
         ).all()
         
-        cats_query = db.session.query(Cat, Age, AgeRange).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.Birthday == AgeRange.Birthday)
+        cats_query = db.session.query(Cat, Age, AgeRange).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.ID == AgeRange.AgeID)
         
         if query_date:
             cats_query = cats_query.filter(Cat.Birthday == query_date)
@@ -81,7 +83,7 @@ def index():
         
         return render_template('index.html', adopters=adopters, cats=cats, extended_view=extended_view, is_adopter_query=bool(adopters), is_cat_query=bool(cats))
     else:
-        cats = db.session.query(Cat, Age, AgeRange).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.Birthday == AgeRange.Birthday).all()
+        cats = db.session.query(Cat, Age, AgeRange).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.ID == AgeRange.AgeID).all()
         return render_template('index.html', cats=cats, extended_view=extended_view, is_adopter_query=False, is_cat_query=bool(cats))
 
 @app.route('/new_cat', methods=['GET', 'POST'])
@@ -102,10 +104,12 @@ def new_cat():
         db.session.commit()
         
         new_age = Age(Birthday=birthday, Age=age, CatID=cat_id)
-        new_age_range = AgeRange(Age=age, Age_Range=age_range, Birthday=birthday)
-        
-        # Commit the Age and AgeRange records
         db.session.add(new_age)
+        db.session.commit()
+        
+        new_age_range = AgeRange(Age=age, Age_Range=age_range, AgeID=new_age.ID)
+        
+        # Commit the AgeRange record
         db.session.add(new_age_range)
         db.session.commit()
         
