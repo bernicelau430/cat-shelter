@@ -29,8 +29,11 @@ Query by:
 - Create Database and User: `mysql -u root -p`
 
 `CREATE DATABASE cat_shelter;`
+
 `CREATE USER 'cat_user'@'localhost' IDENTIFIED BY 'password';`
+
 `GRANT ALL PRIVILEGES ON cat_shelter.* TO 'cat_user'@'localhost';`
+
 `FLUSH PRIVILEGES;`
 
 
