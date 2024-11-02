@@ -50,7 +50,9 @@ def index():
         adopters = db.session.query(Adopter, Applicant, Cat, Age, AgeRange).join(Applicant, Adopter.ApplicantID == Applicant.ID).join(Cat, Adopter.CatID == Cat.ID).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.Age == AgeRange.Age).filter(
             (Adopter.ID.like(f'%{query}%')) |
             (Applicant.ID.like(f'%{query}%')) |
-            (Applicant.Name.like(f'%{query}%'))
+            (Applicant.Name.like(f'%{query}%')) |
+            (Cat.ID.like(f'%{query}%')) |
+            (AgeRange.Age_Range.like(f'%{query}%'))
         ).all()
         
         if adopters:
