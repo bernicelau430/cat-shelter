@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Adoption</title>
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
+        <!-- Header section with title and logo -->
         <h1>Cat Shelter Admin Portal</h1>
         <img src="{{ url_for('static', filename='cat_logo.png') }}" alt="Cat Logo">
     </header>
     <div class="form-container">
+        <!-- Form for processing an adoption -->
         <form method="POST">
+            <!-- Display the generated adopter ID -->
             <label>ID: {{ adopter_id }}</label><br>
+            <!-- Input field for the adopter's name -->
             <label>Name:</label><input type="text" name="name"><br>
+            <!-- Input field for the adopter's email -->
             <label>Email:</label><input type="email" name="email"><br>
+            <!-- Input field for the cat's ID -->
             <label>Cat ID:</label><input type="text" name="cat_id"><br>
+            <!-- Button to cancel and go back to the home page -->
             <button type="button" class="cancel" onclick="window.location.href='/'">Cancel</button>
+            <!-- Button to submit the form and confirm the adoption -->
             <button type="submit">Confirm Adoption</button>
         </form>
     </div>

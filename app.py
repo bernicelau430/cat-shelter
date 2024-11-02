@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 
 # Database Models
 class Cat(db.Model):
+    # Cat table with columns for ID, Name, Birthday, Gender, DateArrived, and Adopted status
     ID = db.Column(db.String(5), primary_key=True, unique=True)
     Name = db.Column(db.String(255))
     Birthday = db.Column(db.Date)
@@ -19,32 +20,38 @@ class Cat(db.Model):
     Adopted = db.Column(db.String(3), default='No')
 
 class Age(db.Model):
+    # Age table with columns for ID, Birthday, Age, and CatID (foreign key to Cat table)
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Birthday = db.Column(db.Date)
     Age = db.Column(db.Integer)
     CatID = db.Column(db.String(5), db.ForeignKey('cat.ID'))
 
 class AgeRange(db.Model):
+    # AgeRange table with columns for ID, Age, Age_Range, and AgeID (foreign key to Age table)
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Age = db.Column(db.Integer)
     Age_Range = db.Column(db.String(10))
     AgeID = db.Column(db.Integer, db.ForeignKey('age.ID'))
 
 class Applicant(db.Model):
+    # Applicant table with columns for ID, Name, and Email
     ID = db.Column(db.String(5), primary_key=True, unique=True)
     Name = db.Column(db.String(255))
     Email = db.Column(db.String(255))
 
 class Adopter(db.Model):
+    # Adopter table with columns for ID, ApplicantID (foreign key to Applicant table), and CatID (foreign key to Cat table)
     ID = db.Column(db.String(5), primary_key=True, unique=True)
     ApplicantID = db.Column(db.String(5), db.ForeignKey('applicant.ID'))
     CatID = db.Column(db.String(5), db.ForeignKey('cat.ID'))
 
+# Function to generate a random ID
 def generate_id():
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
 
 @app.route('/')
 def index():
+    # Route for the home page
     query = request.args.get('query')
     extended_view = request.args.get('extended_view', 'false').lower() == 'true'
     
@@ -58,6 +65,7 @@ def index():
         except ValueError:
             query_date = None
         
+        # Query for adopters based on the search query
         adopters = db.session.query(Adopter, Applicant, Cat, Age, AgeRange).join(Applicant, Adopter.ApplicantID == Applicant.ID).join(Cat, Adopter.CatID == Cat.ID).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.ID == AgeRange.AgeID).filter(
             (Adopter.ID.like(f'%{query}%')) |
             (Applicant.ID.like(f'%{query}%')) |
@@ -66,6 +74,7 @@ def index():
             (AgeRange.Age_Range.like(f'%{query}%'))
         ).all()
         
+        # Query for cats based on the search query
         cats_query = db.session.query(Cat, Age, AgeRange).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.ID == AgeRange.AgeID)
         
         if query_date:
@@ -83,11 +92,13 @@ def index():
         
         return render_template('index.html', adopters=adopters, cats=cats, extended_view=extended_view, is_adopter_query=bool(adopters), is_cat_query=bool(cats))
     else:
+        # Query for all cats if no search query is provided
         cats = db.session.query(Cat, Age, AgeRange).outerjoin(Age, Cat.ID == Age.CatID).outerjoin(AgeRange, Age.ID == AgeRange.AgeID).all()
         return render_template('index.html', cats=cats, extended_view=extended_view, is_adopter_query=False, is_cat_query=bool(cats))
 
 @app.route('/new_cat', methods=['GET', 'POST'])
 def new_cat():
+    # Route for adding a new cat
     if request.method == 'POST':
         cat_id = generate_id()
         name = request.form['name']
@@ -118,6 +129,7 @@ def new_cat():
 
 @app.route('/adoption', methods=['GET', 'POST'])
 def adoption():
+    # Route for processing an adoption
     if request.method == 'POST':
         adopter_id = generate_id()
         applicant_id = generate_id()
@@ -146,6 +158,7 @@ def adoption():
     return render_template('adoption.html', adopter_id=generate_id(), applicant_id=generate_id())
 
 if __name__ == '__main__':
+    # Create all tables and run the app
     with app.app_context():
         db.create_all()
     app.run(debug=True)

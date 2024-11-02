@@ -3,34 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Cat Shelter Admin Portal</title>
+    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
+        <!-- Link to the home page -->
         <a href="/" style="text-decoration: none; color: inherit;">
             <h1>Cat Shelter Admin Portal</h1>
         </a>
+        <!-- Display the cat logo -->
         <img src="{{ url_for('static', filename='cat_logo.png') }}" alt="Cat Logo">
     </header>
     <div class="controls">
         <div class="buttons">
+            <!-- Button to navigate to the new cat form -->
             <button onclick="window.location.href='/new_cat'">New Cat</button>
+            <!-- Button to navigate to the adoption form -->
             <button onclick="window.location.href='/adoption'">Adoption</button>
         </div>
+        <!-- Search form to query cats and adopters -->
         <form method="get" action="/" class="search-form">
             <div>
+                <!-- Input field for the search query -->
                 <input type="text" id="search-bar" name="query" placeholder="Query...">
+                <!-- Submit button for the search form -->
                 <button type="submit">Search</button>
             </div>
             <div class="extended-view-container">
+                <!-- Checkbox to enable extended view -->
                 <label for="extended_view">Extended View</label>
                 <input type="checkbox" id="extended_view" name="extended_view" value="true">
             </div>
         </form>
     </div>
     <div class="table-container">
+        <!-- Check if the query is related to cats -->
         {% if is_cat_query %}
         <div class="table-wrapper">
+            <!-- Table to display cat information -->
             <table class="cat-table">
                 <thead>
                     <tr>
@@ -40,6 +51,7 @@
                         <th>Age</th>
                         <th>Age Range</th>
                         <th>Adopted</th>
+                        <!-- Additional columns for extended view -->
                         {% if extended_view %}
                             <th>Birthday</th>
                             <th>Date Arrived</th>
@@ -47,6 +59,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop through the cats and display their information -->
                     {% for cat, age, age_range in cats %}
                     <tr>
                         <td>{{ cat.ID }}</td>
@@ -55,6 +68,7 @@
                         <td>{{ age.Age }}</td>
                         <td>{{ age_range.Age_Range }}</td>
                         <td>{{ cat.Adopted }}</td>
+                        <!-- Additional data for extended view -->
                         {% if extended_view %}
                             <td>{{ cat.Birthday }}</td>
                             <td>{{ cat.DateArrived }}</td>
@@ -66,8 +80,10 @@
         </div>
         {% endif %}
         
+        <!-- Check if the query is related to adopters -->
         {% if is_adopter_query %}
         <div class="table-wrapper">
+            <!-- Table to display adopter information -->
             <table class="adopter-table">
                 <thead>
                     <tr>
@@ -76,6 +92,7 @@
                         <th>Email</th>
                         <th>Cat ID</th>
                         <th>Cat Name</th>
+                        <!-- Additional columns for extended view -->
                         {% if extended_view %}
                             <th>Cat Gender</th>
                             <th>Cat Age Range</th>
@@ -83,6 +100,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop through the adopters and display their information -->
                     {% for adopter, applicant, cat, age, age_range in adopters %}
                     <tr>
                         <td>{{ adopter.ID }}</td>
@@ -90,6 +108,7 @@
                         <td>{{ applicant.Email }}</td>
                         <td>{{ cat.ID }}</td>
                         <td>{{ cat.Name }}</td>
+                        <!-- Additional data for extended view -->
                         {% if extended_view %}
                             <td>{{ cat.Gender }}</td>
                             <td>{{ age_range.Age_Range }}</td>
