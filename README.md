@@ -26,16 +26,11 @@ Query by:
 - On macOS, you can use Homebrew to install MySQL: `brew install mysql`
 - Start the MySQL server: `brew services start mysql`
 - Secure the MySQL installation: `mysql_secure_installation`
-- Create Database and User: 
-
-`mysql -u root -p`
+- Create Database and User: `mysql -u root -p`
 
 `CREATE DATABASE cat_shelter;`
-
 `CREATE USER 'cat_user'@'localhost' IDENTIFIED BY 'password';`
-
 `GRANT ALL PRIVILEGES ON cat_shelter.* TO 'cat_user'@'localhost';`
-
 `FLUSH PRIVILEGES;`
 
 
