@@ -10,7 +10,7 @@ Query by:
 - Adopter ID
 - Adopter Name
 - Birthday (YYYY-MM-DD)
-- Age
+- Age Range (Kitten, Young, or Adult)
 
 ## Requirements
 - Python
