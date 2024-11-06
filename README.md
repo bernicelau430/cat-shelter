@@ -26,39 +26,71 @@ Query by:
 # Initial Setup Instructions
 
 ### 1. Install the MySQL Database
-- On macOS, you can use Homebrew to install MySQL: `brew install mysql`
-- Start the MySQL server: `brew services start mysql`
-- Secure the MySQL installation: `mysql_secure_installation`
-- Create Database and User: `mysql -u root -p`
-
-`CREATE DATABASE cat_shelter;`
-
-`CREATE USER 'cat_user'@'localhost' IDENTIFIED BY 'password';`
-
-`GRANT ALL PRIVILEGES ON cat_shelter.* TO 'cat_user'@'localhost';`
-
-`FLUSH PRIVILEGES;`
+- On macOS, you can use Homebrew to install MySQL: 
+```bash 
+brew install mysql
+```
+- Start the MySQL server: 
+```bash
+brew services start mysql
+```
+- Secure the MySQL installation: 
+```bash
+mysql_secure_installation
+```
+- Create Database and User: 
+```bash 
+mysql -u root -p
+CREATE DATABASE cat_shelter;
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON cat_shelter.* TO 'admin'@'localhost';
+FLUSH PRIVILEGES;
+```
 
 
 
 ### 2. Log in to MySQL and Set Up the Database
-- Log in: `mysql -u root -p`
-- Use the Database: `USE cat_shelter;`
-- Exit the MySQL monitor: `quit` 
+- Log in: 
+```bash
+mysql -u root -p
+```
+- Use the Database: 
+```bash
+USE cat_shelter;
+```
+- Exit the MySQL monitor: 
+```bash
+quit
+```
 
 In the terminal, navigate to the directory containing the SQL files.
-- Drop Existing Tables: `mysql -u root -p cat_shelter < drop_tables.sql`
-- Create Tables: `mysql -u root -p cat_shelter < schema.sql`
-- Insert Sample Data: `mysql -u root -p cat_shelter < insert_sample_data.sql`
+- Drop Existing Tables: 
+```bash
+mysql -u root -p cat_shelter < drop_tables.sql
+```
+- Create Tables: 
+```bash
+mysql -u root -p cat_shelter < schema.sql
+```
+- Insert Sample Data: 
+```bash
+mysql -u root -p cat_shelter < insert_sample_data.sql
+```
 
 
 
 ### 3. Install the Required Python Packages
-- In the terminal, navigate to the project root directory and run: `pip install Flask Flask-SQLAlchemy PyMySQL`
+- In the terminal, navigate to the project root directory and run: 
+```bash
+pip install Flask Flask-SQLAlchemy PyMySQL
+```
 
 
 ### 4. Run the Flask application
-- In the project root directory, run: `python app.py`
+- In the project root directory, run: 
+```bash
+python app.py
+```
 
 The application will be accessible at http://127.0.0.1:5000/
 
@@ -69,19 +101,40 @@ The application will be accessible at http://127.0.0.1:5000/
 # Running the app
 
 ### 1. Log in to MySQL and Set Up the Database
-- Log in: `mysql -u root -p`
-- Use the Database: `USE cat_shelter;`
-- Exit the MySQL monitor: `quit` 
+- Log in: 
+```bash
+mysql -u root -p
+```
+- Use the Database: 
+```bash
+USE cat_shelter;
+```
+- Exit the MySQL monitor: 
+```bash
+quit
+```
 
 In the terminal, navigate to the directory containing the SQL files.
-- Drop Existing Tables: `mysql -u root -p cat_shelter < drop_tables.sql`
-- Create Tables: `mysql -u root -p cat_shelter < schema.sql`
-- Insert Sample Data: `mysql -u root -p cat_shelter < insert_sample_data.sql`
+- Drop Existing Tables: 
+```bash
+mysql -u root -p cat_shelter < drop_tables.sql
+```
+- Create Tables: 
+```bash
+mysql -u root -p cat_shelter < schema.sql
+```
+- Insert Sample Data: 
+```bash
+mysql -u root -p cat_shelter < insert_sample_data.sql
+```
 
 
 
 ### 2. Run the Flask Application
-- In the project root directory, run: `python app.py`
+- In the project root directory, run: 
+```bash
+python app.py
+```
 
 The application will be accessible at http://127.0.0.1:5000/
 
