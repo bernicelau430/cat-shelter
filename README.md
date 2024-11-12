@@ -145,3 +145,28 @@ The application will be accessible at http://127.0.0.1:5000/
 - Ensure the MySQL server is running before starting the Flask application
 - Replace 'cat_user' and 'password' with your actual MySQL user and password in the Flask application configuration
 - The Flask development server will be accessible at http://127.0.0.1:5000/ by default
+
+
+
+
+## Need to Debug (Priority):
+- Adopters can adopt cats that have already been adopted
+- Applicant ID in the Adoption page is different than the Applicant ID displayed in the table 
+- Cat ID in the New Cat page is different than the Cat ID displayed in the table 
+- When searching by Age, all the data with the age number in their tables shows up instead of just the relevant Cat data.
+
+
+
+
+## More Queries to Add:
+- Gender
+- Adoption Status —> might need to change the way adoption status data is stored. Currently it’s a column of the Cat table called Adopted with fields Yes and No, but you can change it to a column called Status with fields Adopted and Available
+- Date Arrived (YYYY-MM-DD format)
+
+
+
+
+## More Features to Add:
+- Revise schema in the Age table —> Remove Birthday column, get Birthday data from Cat table during queries
+- “No entries found, please revise your query…” message displayed to the user if the table is empty after they execute a query
+- Make the Cat ID field a drop-down menu of all the Cat IDs in the Adoption page
