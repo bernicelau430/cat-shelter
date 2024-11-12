@@ -149,6 +149,9 @@ The application will be accessible at http://127.0.0.1:5000/
 
 
 
+------------------------------------------------------
+# Developer Notes
+
 ## Need to Debug (Priority):
 - Adopters can adopt cats that have already been adopted
 - Applicant ID in the Adoption page is different than the Applicant ID displayed in the table 
